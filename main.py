@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 import random
 import json
-from mangum import Mangum
 
 
 try:
@@ -11,21 +10,19 @@ except FileNotFoundError:
     raise Exception("quotes.json file not found. Please ensure it's deployed correctly.")
 
 
-api = FastAPI()
+app = FastAPI()
 
-handler = Mangum(api)
-
-@api.get('/')
+@app.get('/')
 def index():
     category = random.choice(list(AllQuotes.keys()))
     quote = random.choice(AllQuotes[category])
     return {"quote": quote["quote"], "writer": quote["writer"], "category": category}
 
-@api.get("/categories")
+@app.get("/categories")
 def categories():
     return {"categories":list(AllQuotes.keys())}
 
-@api.get("/blooming_love")
+@app.get("/blooming_love")
 def blooming_love():
     quote = random.choice(AllQuotes["blooming_love"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
@@ -35,12 +32,12 @@ def wisdom():
     quote = random.choice(AllQuotes["wisdom"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
 
-@api.get("/motivation")
+@app.get("/motivation")
 def motivation():
     quote = random.choice(AllQuotes["motivation"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
 
-@api.get("/heartbreak")
+@app.get("/heartbreak")
 def heartbreak():
     quote = random.choice(AllQuotes["heartbreak"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
