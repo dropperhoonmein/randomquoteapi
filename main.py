@@ -42,7 +42,7 @@ def heartbreak():
     quote = random.choice(AllQuotes["heartbreak"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
 
-@api.get("/deep_love")
+@app.get("/deep_love")
 def deep_love():
     quote = random.choice(AllQuotes["deep_love"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
