@@ -27,7 +27,7 @@ def blooming_love():
     quote = random.choice(AllQuotes["blooming_love"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
 
-@api.get("/wisdom")
+@app.get("/wisdom")
 def wisdom():
     quote = random.choice(AllQuotes["wisdom"])
     return {"quote": quote["quote"], "writer": quote["writer"]}
